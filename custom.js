@@ -8,14 +8,18 @@ class MyElement extends HTMLElement {
     const p = document.createElement("p");
     const a = document.createElement("a");
     h2.setAttribute("id", "h2");
-    h2.innerText = "Hello";
+    // h2.innerText = "Hello";
     img.setAttribute("id", "img");
-    img.setAttribute("src", "/images/cat.jpg");
+    // img.setAttribute("src", "/images/cat.jpg");
     p.setAttribute("id", "p");
-    p.innerText = "Somehting";
+    // p.innerText = "Somehting";
     a.setAttribute("id", "a");
-    a.setAttribute("href", "https://developer.mozilla.org/en-US/");
-    a.innerText = "click me";
+    // a.setAttribute("href", "https://developer.mozilla.org/en-US/");
+    // a.innerText = "click me";
+    this.shadow.appendChild(h2);
+    this.shadow.appendChild(img);
+    this.shadow.appendChild(p);
+    this.shadow.appendChild(a);
   }
   connectedCallback() {
     // browser calls this method when the element is added to the document
@@ -33,21 +37,22 @@ function init() {
 }
 async function saveFetch() {
   let res = await fetch(
-    "https://api.jsonbin.io/v3/qs/64cbe1d4b89b1e2299cabf4d"
+    "https://my-json-server.typicode.com/AungKyaw321/hw4_p2/cards"
   );
   res = await res.json();
   console.log(res);
-  globalVar = res.record;
+  globalVar = res;
+  console.log(globalVar[0].name);
   let data = document.querySelector("my-test"); // Select the custom element instance
-  console.log(data.shadowRoot.getElementById("h2").innerText);
+  // console.log(data.shadowRoot.getElementById("h2").innerText);
   data.shadowRoot.getElementById("h2").innerText = globalVar[0].name; // Change the attribute
-  console.log(data.shadowRoot.getElementById("img").innerText);
+  // console.log(data.shadowRoot.getElementById("img").innerText);
   data.shadowRoot.getElementById("img").innerText = globalVar[0].image; // Change the attribute
-  console.log(data.shadowRoot.getElementById("p").innerText);
+  // console.log(data.shadowRoot.getElementById("p").innerText);
   data.shadowRoot.getElementById("p").innerText = globalVar[0].description; // Change the attribute
-  console.log(data.shadowRoot.getElementById("a").innerText);
+  // console.log(data.shadowRoot.getElementById("a").innerText);
   data.shadowRoot.getElementById("a").innerText = globalVar[0].link; // Change the attribute
-  console.log(globalVar);
+  // console.log(globalVar);
 }
 
 customElements.define("my-test", MyElement);

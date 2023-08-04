@@ -2,7 +2,7 @@
   "cards": [
     {
       "name": "Project A",
-      "image": "https://example.com/projectA.jpg",
+      "image": "https://cdn.pixabay.com/photo/2023/07/20/04/45/leva-8138344_1280.jpg",
       "description": "This is project A. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       "link": "https://example.com/projectA"
     },
