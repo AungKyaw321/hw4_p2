@@ -9,24 +9,16 @@ class MyElement extends HTMLElement {
     const p = document.createElement("p");
     const a = document.createElement("a");
     h2.setAttribute("id", "h2");
-    // h2.innerText = "Hello";
     img.setAttribute("id", "img");
-    // img.setAttribute("src", "/images/cat.jpg");
     p.setAttribute("id", "p");
-    // p.innerText = "Somehting";
     a.setAttribute("id", "a");
-    // a.setAttribute("href", "https://developer.mozilla.org/en-US/");
-    // a.innerText = "click me";
     this.shadow.appendChild(h2);
     this.shadow.appendChild(img);
     this.shadow.appendChild(p);
     this.shadow.appendChild(a);
   }
 
-  connectedCallback() {
-    // browser calls this method when the element is added to the document
-    // (can be called many times if an element is repeatedly added/removed)
-  }
+  connectedCallback() {}
 }
 
 function init() {
@@ -52,15 +44,15 @@ async function saveFetch() {
   for (let i = 0; i < globalVar.length; i++) {
     const card = document.createElement("my-test");
     console.log(i);
-    card.shadowRoot.getElementById("h2").innerText = globalVar[i].name; // Change the attribute
+    card.shadowRoot.getElementById("h2").innerText = globalVar[i].name;
 
     card.shadowRoot
       .getElementById("img")
-      .setAttribute("src", globalVar[i].image); // Change the attribute
+      .setAttribute("src", globalVar[i].image);
     card.shadowRoot.getElementById("img").setAttribute("height", "100px");
-    card.shadowRoot.getElementById("p").innerText = globalVar[i].description; // Change the attribute
+    card.shadowRoot.getElementById("p").innerText = globalVar[i].description;
     card.shadowRoot.getElementById("a").setAttribute("href", globalVar[i].link);
-    card.shadowRoot.getElementById("a").innerText = "click me"; // Change the attribute
+    card.shadowRoot.getElementById("a").innerText = "click me";
     cardContainer.appendChild(card);
   }
 }
@@ -91,19 +83,20 @@ console.log("Added to Local Storage");
 
 function saveLocal() {
   const localData = localStorage.getItem("localData");
-  let data = JSON.parse(localData);
-  console.log(data);
+  let localVar = JSON.parse(localData);
   const cardContainer = document.getElementById("cardContainer");
   cardContainer.innerHTML = "";
 
-  for (let i = 0; i < data.length; i++) {
+  for (let i = 0; i < localVar.length; i++) {
     const card = document.createElement("my-test");
-    card.shadowRoot.getElementById("h2").innerText = data[i].name; // Change the attribute
-    card.shadowRoot.getElementById("img").setAttribute("src", data[i].image); // Change the attribute
+    card.shadowRoot.getElementById("h2").innerText = localVar[i].name;
+    card.shadowRoot
+      .getElementById("img")
+      .setAttribute("src", localVar[i].image);
     card.shadowRoot.getElementById("img").setAttribute("height", "100px");
-    card.shadowRoot.getElementById("p").innerText = data[i].description; // Change the attribute
-    card.shadowRoot.getElementById("a").setAttribute("href", data[i].link);
-    card.shadowRoot.getElementById("a").innerText = "click me"; // Change the attribute
+    card.shadowRoot.getElementById("p").innerText = localVar[i].description;
+    card.shadowRoot.getElementById("a").setAttribute("href", localVar[i].link);
+    card.shadowRoot.getElementById("a").innerText = "click me";
     cardContainer.appendChild(card);
   }
 }
