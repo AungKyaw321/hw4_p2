@@ -1,4 +1,5 @@
 let globalVar = "";
+
 class MyElement extends HTMLElement {
   constructor() {
     super();
@@ -21,44 +22,92 @@ class MyElement extends HTMLElement {
     this.shadow.appendChild(p);
     this.shadow.appendChild(a);
   }
+
   connectedCallback() {
     // browser calls this method when the element is added to the document
     // (can be called many times if an element is repeatedly added/removed)
   }
-
-  // there can be other element methods and properties
 }
+
 function init() {
+  let element;
   element = document.getElementById("loadRemote");
+  element.addEventListener("click", saveFetch);
+  element = document.getElementById("loadLocal");
   element.addEventListener("click", function () {
-    saveFetch();
-    console.log("inEvent");
+    saveLocal();
   });
 }
+
 async function saveFetch() {
   let res = await fetch(
     "https://my-json-server.typicode.com/AungKyaw321/hw4_p2/cards"
   );
   res = await res.json();
-  console.log(res);
   globalVar = res;
-  console.log(globalVar[0].name);
-  let data = document.querySelector("my-test"); // Select the custom element instance
-  // console.log(data.shadowRoot.getElementById("h2").innerText);
-  data.shadowRoot.getElementById("h2").innerText = globalVar[0].name; // Change the attribute
-  // console.log(data.shadowRoot.getElementById("img").innerText);
-  data.shadowRoot.getElementById("img").innerText = globalVar[0].image; // Change the attribute
-  // console.log(data.shadowRoot.getElementById("p").innerText);
-  data.shadowRoot.getElementById("p").innerText = globalVar[0].description; // Change the attribute
-  // console.log(data.shadowRoot.getElementById("a").innerText);
-  data.shadowRoot.getElementById("a").innerText = globalVar[0].link; // Change the attribute
-  // console.log(globalVar);
+  console.log(globalVar[1].description);
+  const cardContainer = document.getElementById("cardContainer");
+  cardContainer.innerHTML = "";
+
+  for (let i = 0; i < globalVar.length; i++) {
+    const card = document.createElement("my-test");
+    console.log(i);
+    card.shadowRoot.getElementById("h2").innerText = globalVar[i].name; // Change the attribute
+
+    card.shadowRoot
+      .getElementById("img")
+      .setAttribute("src", globalVar[i].image); // Change the attribute
+    card.shadowRoot.getElementById("img").setAttribute("height", "100px");
+    card.shadowRoot.getElementById("p").innerText = globalVar[i].description; // Change the attribute
+    card.shadowRoot.getElementById("a").setAttribute("href", globalVar[i].link);
+    card.shadowRoot.getElementById("a").innerText = "click me"; // Change the attribute
+    cardContainer.appendChild(card);
+  }
+}
+const data = [
+  {
+    name: "Load Local A",
+    image: "/localimages/pic1.jpg",
+    description: "This is a description from Load Local 1",
+    link: "https://developer.mozilla.org/en-US/",
+  },
+  {
+    name: "Load Local B",
+    image: "/localimages/pic2.jpg",
+    description: "This is a description from Load Local 2",
+    link: "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+  },
+  {
+    name: "Load Local C",
+    image: "/localimages/pic3.jpg",
+    description: "This is a description from Load Local 3",
+    link: "https://developer.mozilla.org/en-US/docs/Web/CSS/font-palette",
+  },
+  // Add more objects as needed
+];
+const jsonString = JSON.stringify(data);
+localStorage.setItem("localData", jsonString);
+console.log("Added to Local Storage");
+
+function saveLocal() {
+  const localData = localStorage.getItem("localData");
+  let data = JSON.parse(localData);
+  console.log(data);
+  const cardContainer = document.getElementById("cardContainer");
+  cardContainer.innerHTML = "";
+
+  for (let i = 0; i < data.length; i++) {
+    const card = document.createElement("my-test");
+    card.shadowRoot.getElementById("h2").innerText = data[i].name; // Change the attribute
+    card.shadowRoot.getElementById("img").setAttribute("src", data[i].image); // Change the attribute
+    card.shadowRoot.getElementById("img").setAttribute("height", "100px");
+    card.shadowRoot.getElementById("p").innerText = data[i].description; // Change the attribute
+    card.shadowRoot.getElementById("a").setAttribute("href", data[i].link);
+    card.shadowRoot.getElementById("a").innerText = "click me"; // Change the attribute
+    cardContainer.appendChild(card);
+  }
 }
 
 customElements.define("my-test", MyElement);
 
-/*
-const myTest = document.createElement("my-test");
-
-*/
 window.addEventListener("DOMContentLoaded", init);

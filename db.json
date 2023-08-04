@@ -3,20 +3,20 @@
     {
       "name": "Project A",
       "image": "/images/cat.jpg",
-      "description": "This is project A. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "link": "https://example.com/projectA"
+      "description": "This is a description from load Remote 1",
+      "link": "https://developer.mozilla.org/en-US/docs/Web/CSS/font-feature-settings"
     },
     {
       "name": "Project B",
       "image": "/images/random.jpg",
-      "description": "This is project B. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "link": "https://example.com/projectB"
+      "description": "This is a description from load Remote 2",
+      "link": "https://developer.mozilla.org/en-US/docs/Web/CSS/float"
     },
     {
       "name": "Project C",
       "image": "/images/Aung.jpg",
-      "description": "This is project C. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-      "link": "https://example.com/projectC"
+      "description": "This is a description from load Remote 3",
+      "link": "https://developer.mozilla.org/en-US/docs/Web/CSS/display"
     }
   ]
 }
