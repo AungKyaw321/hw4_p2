@@ -1,6 +1,6 @@
 let globalVar = "";
 
-class MyElement extends HTMLElement {
+class MyCard extends HTMLElement {
   constructor() {
     super();
     this.shadow = this.attachShadow({ mode: "open" });
@@ -20,6 +20,7 @@ class MyElement extends HTMLElement {
 
   connectedCallback() {}
 }
+customElements.define("my-card", MyCard);
 
 function init() {
   let element;
@@ -42,7 +43,7 @@ async function saveFetch() {
   cardContainer.innerHTML = "";
 
   for (let i = 0; i < globalVar.length; i++) {
-    const card = document.createElement("my-test");
+    const card = document.createElement("my-card");
     console.log(i);
     card.shadowRoot.getElementById("h2").innerText = globalVar[i].name;
 
@@ -88,7 +89,7 @@ function saveLocal() {
   cardContainer.innerHTML = "";
 
   for (let i = 0; i < localVar.length; i++) {
-    const card = document.createElement("my-test");
+    const card = document.createElement("my-card");
     card.shadowRoot.getElementById("h2").innerText = localVar[i].name;
     card.shadowRoot
       .getElementById("img")
@@ -100,7 +101,5 @@ function saveLocal() {
     cardContainer.appendChild(card);
   }
 }
-
-customElements.define("my-test", MyElement);
 
 window.addEventListener("DOMContentLoaded", init);
