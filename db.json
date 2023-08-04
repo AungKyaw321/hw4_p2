@@ -2,19 +2,19 @@
   "cards": [
     {
       "name": "Project A",
-      "image": "https://cdn.pixabay.com/photo/2023/07/20/04/45/leva-8138344_1280.jpg",
+      "image": "/images/cat.jpg",
       "description": "This is project A. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       "link": "https://example.com/projectA"
     },
     {
       "name": "Project B",
-      "image": "https://example.com/projectB.jpg",
+      "image": "/images/random.jpg",
       "description": "This is project B. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "link": "https://example.com/projectB"
     },
     {
       "name": "Project C",
-      "image": "https://example.com/projectC.jpg",
+      "image": "/images/Aung.jpg",
       "description": "This is project C. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
       "link": "https://example.com/projectC"
     }
