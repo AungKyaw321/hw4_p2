@@ -38,13 +38,11 @@ async function saveFetch() {
   );
   res = await res.json();
   globalVar = res;
-  console.log(globalVar[1].description);
   const cardContainer = document.getElementById("cardContainer");
   cardContainer.innerHTML = "";
 
   for (let i = 0; i < globalVar.length; i++) {
     const card = document.createElement("my-card");
-    console.log(i);
     card.shadowRoot.getElementById("h2").innerText = globalVar[i].name;
 
     card.shadowRoot
@@ -80,7 +78,6 @@ const data = [
 ];
 const jsonString = JSON.stringify(data);
 localStorage.setItem("localData", jsonString);
-console.log("Added to Local Storage");
 
 function saveLocal() {
   const localData = localStorage.getItem("localData");
