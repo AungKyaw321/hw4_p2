@@ -1,6 +1,6 @@
 let globalVar = "";
 
-class MyCard extends HTMLElement {
+class projectCard extends HTMLElement {
   constructor() {
     super();
     this.shadow = this.attachShadow({ mode: "open" });
@@ -20,7 +20,7 @@ class MyCard extends HTMLElement {
 
   connectedCallback() {}
 }
-customElements.define("my-card", MyCard);
+customElements.define("project-card", projectCard);
 
 function init() {
   let element;
@@ -42,34 +42,37 @@ async function saveFetch() {
   cardContainer.innerHTML = "";
 
   for (let i = 0; i < globalVar.length; i++) {
-    const card = document.createElement("my-card");
+    const card = document.createElement("project-card");
     card.shadowRoot.getElementById("h2").innerText = globalVar[i].name;
 
     card.shadowRoot
       .getElementById("img")
       .setAttribute("src", globalVar[i].image);
     card.shadowRoot.getElementById("img").setAttribute("height", "100px");
+    card.shadowRoot
+      .getElementById("img")
+      .setAttribute("alt", "This is an image");
     card.shadowRoot.getElementById("p").innerText = globalVar[i].description;
     card.shadowRoot.getElementById("a").setAttribute("href", globalVar[i].link);
-    card.shadowRoot.getElementById("a").innerText = "click me";
+    card.shadowRoot.getElementById("a").innerText = "Read More (filler link)";
     cardContainer.appendChild(card);
   }
 }
 const dataLocal = [
   {
-    name: "Load Local A",
+    name: "Project Load Local A",
     image: "/localimages/pic1.jpg",
     description: "This is a description from Load Local 1",
     link: "https://developer.mozilla.org/en-US/",
   },
   {
-    name: "Load Local B",
+    name: "Project Load Local B",
     image: "/localimages/pic2.jpg",
     description: "This is a description from Load Local 2",
     link: "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
   },
   {
-    name: "Load Local C",
+    name: "Project Load Local C",
     image: "/localimages/pic3.jpg",
     description: "This is a description from Load Local 3",
     link: "https://developer.mozilla.org/en-US/docs/Web/CSS/font-palette",
@@ -85,15 +88,18 @@ function saveLocal() {
   cardContainer.innerHTML = "";
 
   for (let i = 0; i < localVar.length; i++) {
-    const card = document.createElement("my-card");
+    const card = document.createElement("project-card");
     card.shadowRoot.getElementById("h2").innerText = localVar[i].name;
     card.shadowRoot
       .getElementById("img")
       .setAttribute("src", localVar[i].image);
     card.shadowRoot.getElementById("img").setAttribute("height", "100px");
+    card.shadowRoot
+      .getElementById("img")
+      .setAttribute("alt", "This is an image");
     card.shadowRoot.getElementById("p").innerText = localVar[i].description;
     card.shadowRoot.getElementById("a").setAttribute("href", localVar[i].link);
-    card.shadowRoot.getElementById("a").innerText = "click me";
+    card.shadowRoot.getElementById("a").innerText = "Read More (filler link)";
     cardContainer.appendChild(card);
   }
 }
