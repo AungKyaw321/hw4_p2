@@ -55,7 +55,7 @@ async function saveFetch() {
     cardContainer.appendChild(card);
   }
 }
-const data = [
+const dataLocal = [
   {
     name: "Load Local A",
     image: "/localimages/pic1.jpg",
@@ -74,9 +74,8 @@ const data = [
     description: "This is a description from Load Local 3",
     link: "https://developer.mozilla.org/en-US/docs/Web/CSS/font-palette",
   },
-  // Add more objects as needed
 ];
-const jsonString = JSON.stringify(data);
+const jsonString = JSON.stringify(dataLocal);
 localStorage.setItem("localData", jsonString);
 
 function saveLocal() {
